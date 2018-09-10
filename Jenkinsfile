@@ -1,8 +1,6 @@
 node{
     def app
-    try {
-       stage('Checkout'){
-          checkout scm
-       }
+    stage('Checkout'){
+        checkout scm
     }
 }
