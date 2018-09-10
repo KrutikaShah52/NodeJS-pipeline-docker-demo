@@ -3,7 +3,7 @@ node{
     
     environment {
         registry = "krutika1052/nodejs_docker_example"
-        registryCredential = 'dockerhub'
+        // registryCredential = 'dockerhub'
     }
 
     stage('Checkout'){
@@ -15,7 +15,7 @@ node{
     }
 
     stage('Push Image on Docker-hub'){
-        docker.withRegistry('https://registry.hub.docker.com', 'registryCredential'){
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
