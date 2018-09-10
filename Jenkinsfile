@@ -15,7 +15,7 @@ node{
     }
 
     stage('Push Image on Docker-hub'){
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
+        docker.withRegistry('https://krutika1052', 'dockerhub'){
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
