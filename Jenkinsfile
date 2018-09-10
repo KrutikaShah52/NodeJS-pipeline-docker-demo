@@ -1,6 +1,7 @@
 node{
     def app
-    stage('Clone Repository'){
-        checkout scm
-    }
+    try {
+       stage('Checkout'){
+          checkout scm
+       }
 }
