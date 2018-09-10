@@ -1,11 +1,6 @@
 pipeline{
     agent { label 'docker' }
     stages{
-        
-        environment {
-            registry = "krutika1052/nodejs_docker_example"
-            // registryCredential = 'dockerhub'
-        }
 
         stage('Checkout'){
             steps{
