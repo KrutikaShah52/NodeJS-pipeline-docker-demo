@@ -15,8 +15,10 @@ node{
     }
 
     stage('Push Image on Docker-hub'){
-         withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-          sh 'docker push krutika1052/nodejs_docker_example'
+        steps{
+            withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
+                sh 'docker push krutika1052/nodejs_docker_example'
+            }
         }
     }
 }
