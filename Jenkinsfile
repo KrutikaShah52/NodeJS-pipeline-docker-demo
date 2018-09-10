@@ -3,7 +3,7 @@ node{
     
     environment {
         registry = "krutika1052/nodejs_docker_example"
-        registryCredential = '57f6cf93-47c1-48ed-9506-cb6e190354b1'
+        registryCredential = 'dockerhub'
     }
 
     stage('Checkout'){
