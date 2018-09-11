@@ -14,8 +14,8 @@ node{
         def myTestContainer = docker.image('node:4.6')
         myTestContainer.pull()
         myTestContainer.inside {
-            sh 'npm install'
-            sh 'npm test'
+            sh 'sudo npm install'
+            sh 'sudo npm test'
         }
     }
  
@@ -24,8 +24,8 @@ node{
         def myTestContainer = docker.image('node:4.6')
         myTestContainer.pull()
         myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
-            sh 'npm install' 
-            sh 'npm test'                     
+            sh 'sudo npm install' 
+            sh 'sudo npm test'                     
         }                                   
         mysql.stop()
     }    
