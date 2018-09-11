@@ -7,7 +7,7 @@ node{
     }
     stage('test') {
         def myTestContainer = docker.build("nodejs-docker-app")
-        myTestContainer.inside {
+        myTestContainer.inside("-u root:root") {
             sh 'npm install'
             sh 'npm test'
         }
