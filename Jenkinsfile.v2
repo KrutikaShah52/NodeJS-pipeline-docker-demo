@@ -10,7 +10,7 @@ node{
         def myTestContainer = docker.image('node:4.6')
         myTestContainer.pull()
 
-        myTestContainer.inside("-u 123:131") {
+        myTestContainer.inside {
             sh 'npm install'
             sh 'npm test'
         }
