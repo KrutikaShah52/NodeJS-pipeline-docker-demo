@@ -9,7 +9,7 @@ node{
          app = docker.build("nodejs-docker-app")
     }
     stage('test') {
-        def myTestContainer = docker.image('node:4.6')
+        def myTestContainer = docker.image('nodejs-docker-app:latest')
         myTestContainer.pull()
         myTestContainer.inside {
             sh 'npm install'
