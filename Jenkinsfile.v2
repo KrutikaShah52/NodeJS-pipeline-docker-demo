@@ -7,9 +7,11 @@ node{
     }
     stage('test') {
         def myTestContainer = docker.build("nodejs-docker-app")
-        myTestContainer.inside("-u root:root") {
+        def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes")
+        myTestContainer.inside("-u root:root","--link ${mysql.id}:mysql") {
             sh 'npm install'
             sh 'npm test'
         }
+        mysql.stop()
     }
 }
