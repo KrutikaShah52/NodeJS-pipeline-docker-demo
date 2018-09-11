@@ -1,5 +1,5 @@
 FROM node:4.6
-user root
+USER root
 WORKDIR /app
 ADD . /app
 RUN npm install
