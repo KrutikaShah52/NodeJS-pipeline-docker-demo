@@ -6,33 +6,13 @@ node{
         checkout scm
     }
 
-    stage('Build Docker image'){
-         app = docker.build("nodejs-docker-app")
-    }
-
     stage('test') {
         def myTestContainer = docker.image('node:4.6')
         myTestContainer.pull()
-        myTestContainer.inside {
-            sh 'sudo npm install'
-            sh 'sudo npm test'
+
+        myTestContainer.inside("-u 123:131") {
+            sh 'npm install'
+            sh 'npm test'
         }
     }
- 
-    stage('test with a DB') {
-        def mysql = docker.image('mysql').run("-e MYSQL_ALLOW_EMPTY_PASSWORD=yes") 
-        def myTestContainer = docker.image('node:4.6')
-        myTestContainer.pull()
-        myTestContainer.inside("--link ${mysql.id}:mysql") { // using linking, mysql will be available at host: mysql, port: 3306
-            sh 'sudo npm install' 
-            sh 'sudo npm test'                     
-        }                                   
-        mysql.stop()
-    }    
-
-    stage('docker build/push') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app = docker.build("krutika1052/nodejs_docker_example:${tag}", '.').push()
-     }
-   }
 }
